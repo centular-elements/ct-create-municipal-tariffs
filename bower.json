@@ -1,7 +1,7 @@
 {
-  "name": "ct-create-municipality-tariffs",
+  "name": "ct-create-municipal-tariffs",
   "description": "Element to add a new municipality with a set of tariffs on the Centular platform",
-  "main": "ct-create-municipality-tariffs.html",
+  "main": "ct-create-municipal-tariffs.html",
   "dependencies": {
     "polymer": "Polymer/polymer#^1.9.0"
   },

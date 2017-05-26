@@ -1,4 +1,4 @@
-# \<ct-create-municipality-tariffs\>
+# \<ct-create-municipal-tariffs\>
 
 Element to add a new municipality with a set of tariffs on the Centular platform
 
