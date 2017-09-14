@@ -7,6 +7,7 @@
 <link rel="import" href="../paper-dropdown-menu/paper-dropdown-menu.html">
 <link rel="import" href="../paper-date-picker/paper-date-picker.html">
 <link rel="import" href="../vaadin-date-picker/vaadin-date-picker.html">
+<link rel="import" href="../ct-municipal-tariff-blocks/ct-municipal-tariff-blocks.html">
 
 
 <!--
@@ -94,6 +95,7 @@ Element to add a new municipality with a set of tariffs on the Centular platform
                 <div class="row">
                     <div class="col-sm-6 col-xs-12">
                         <paper-input
+                                id="municipalityInput"
                                 class="ct-label ct-bordered"
                                 label="Municipality Name"
                                 type="text"
@@ -124,12 +126,12 @@ Element to add a new municipality with a set of tariffs on the Centular platform
                         <iron-pages selected='{{ _utility }}' attr-for-selected='key'>
                             <div key="electricity">
                                 <paper-material>
-                                    <span>Electricity</span>
+                                    <ct-municipal-tariff-blocks id="electBlocks" utility-type="0"></ct-municipal-tariff-blocks>
                                 </paper-material>
                             </div>
                             <div key="water">
                                 <paper-material>
-                                    <span>Water</span>
+                                    <ct-municipal-tariff-blocks id="waterBlocks" utility-type="1"></ct-municipal-tariff-blocks>
                                 </paper-material>
                             </div>
                         </iron-pages>
@@ -137,7 +139,7 @@ Element to add a new municipality with a set of tariffs on the Centular platform
                 </div>
                 <div class="row">
                     <div class="col-xs-12">
-                        <paper-button class="element-background element-color btn btn-primary pull-right" on-tap="_submitForm" raised>Save</paper-button>
+                        <paper-button class="element-background element-color btn btn-primary pull-right" on-tap="_save" raised>Save</paper-button>
                     </div>
                 </div>
             </div>
@@ -148,19 +150,6 @@ Element to add a new municipality with a set of tariffs on the Centular platform
     <script>
         Polymer({
 
-//    {
-//        "name": "string",
-//        "utilityType": "string",
-//        "effectiveDate": "string",
-//        "tariffBlocks": [
-//        {
-//            "fromUnits": 0,
-//            "toUnits": 0,
-//            "tariff": 0
-//        }
-//    ]
-//    }
-
             is: 'ct-create-municipal-tariffs',
 
             properties: {
@@ -169,10 +158,6 @@ Element to add a new municipality with a set of tariffs on the Centular platform
                     type: String,
                     value: 'electricity'
                 }
-            },
-
-            listeners: {
-                'iron-form-presubmit':'_formHandler'
             },
 
             ready: function () {
@@ -190,6 +175,15 @@ Element to add a new municipality with a set of tariffs on the Centular platform
                         return date;
                     }
                 };
+            },
+
+            _save: function () {
+                if (this.$.municipalityInput.validate()
+                        && this.$.datePicker.validate()
+                        && this.$.electBlocks.validate()
+                        && this.$.waterBlocks.validate()) {
+                    console.log('OK');
+                }
             }
 
         });
