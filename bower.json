@@ -7,8 +7,8 @@
     "paper-date-picker": "bendavis78/paper-date-picker#^1.2.0",
     "iron-pages": "polymerelements/iron-pages#^1.0.0",
     "paper-tabs": "PolymerElements/paper-tabs#^1.8.0",
-    "vaadin-date-picker": "vaadin/vaadin-date-picker#^1.2.3"
-
+    "vaadin-date-picker": "vaadin/vaadin-date-picker#^1.2.3",
+    "ct-municipal-tariff-blocks": "centular-elements/ct-municipal-tariff-blocks"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
