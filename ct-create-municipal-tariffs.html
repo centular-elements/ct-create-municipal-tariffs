@@ -114,7 +114,7 @@ Element to add a new municipality with a set of tariffs on the Centular platform
                                 no-animations
                                 required
                                 placeholder="Please select a date when tariffs will take effect">
-                            <paper-date-picker class="dropdown-content"></paper-date-picker>
+                            <paper-date-picker id="datePicker" class="dropdown-content"></paper-date-picker>
                         </paper-dropdown-menu>
                     </div>
                 </div>
@@ -177,6 +177,12 @@ Element to add a new municipality with a set of tariffs on the Centular platform
 
             listeners: {
                 'iron-form-presubmit':'_formHandler'
+            },
+
+            ready: function () {
+                this.$.datePicker.i18n.formatDate = function (d) {
+                    return [d.getDate(), d.getMonth() + 1, d.getFullYear()].join('.');
+                }
             },
 
             _submitForm : function(){
