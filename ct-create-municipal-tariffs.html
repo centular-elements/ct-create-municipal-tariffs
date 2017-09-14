@@ -169,7 +169,6 @@ Element to add a new municipality with a set of tariffs on the Centular platform
                     type: String,
                     value: 'electricity'
                 }
-
             },
 
             listeners: {
@@ -179,10 +178,7 @@ Element to add a new municipality with a set of tariffs on the Centular platform
             ready: function () {
                 var dp = this.$.datePicker;
                 dp.i18n.formatDate = function (d) {
-                    var day = d.getDate();
-                    var month = d.getMonth();
-                    var year = d.getFullYear();
-                    return [year, month + 1, day].join('-');
+                    return [d.getFullYear(), d.getMonth() + 1, d.getDate()].join('-');
                 };
                 dp.i18n.parseDate = function(text) {
                     var parts = text.split('-');
@@ -193,48 +189,7 @@ Element to add a new municipality with a set of tariffs on the Centular platform
                         date.setDate(parseInt(parts[2]));
                         return date;
                     }
-                }
-            },
-
-            _submitForm : function(){
-                this.$.form.submit();
-            },
-
-            _formHandler : function(e){
-
-                e.preventDefault();
-
-                var form = this.$.form;
-
-                if(form.validate()) {
-
-                    var formData = form.serialize(),
-                            data = {};
-
-                    data.firstName = formData.firstName;
-                    data.lastName = formData.lastName;
-
-                    if(formData.email || formData.mobile){
-                        data.contacts = [];
-
-                        if(formData.email){
-                            data.contacts.push({'contact': formData.email, 'contactType' : 'email'});
-                        }
-
-                        if(formData.mobile){
-                            data.contacts.push({'contact': formData.mobile, 'contactType' : 'mobile'});
-                        }
-                    }
-
-                    data.group = this.$.groupInput.selected;
-
-                    this.fire('addMunicipality', data);
-                }
-
-            },
-
-            _computeRequired : function(value){
-                return !value.length;
+                };
             }
 
         });
