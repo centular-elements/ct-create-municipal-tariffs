@@ -178,11 +178,26 @@ Element to add a new municipality with a set of tariffs on the Centular platform
             },
 
             _save: function () {
-                if (this.$.municipalityInput.validate()
-                        && this.$.datePicker.validate()
-                        && this.$.electBlocks.validate()
-                        && this.$.waterBlocks.validate()) {
-                    console.log('OK');
+                var electBlocks = this.$.electBlocks;
+                var waterBlocks = this.$.waterBlocks;
+                var municipalityInput = this.$.municipalityInput;
+                var datePicker = this.$.datePicker;
+
+                if (municipalityInput.validate()
+                        && datePicker.validate()
+                        && electBlocks.validate()
+                        && waterBlocks.validate()) {
+                    var tariffs = electBlocks.serialize().concat(waterBlocks.serialize());
+                    if (tariffs.length > 0) {
+                        this.fire('ct-add-municipality',
+                                {
+                                    "municipality": municipalityInput.value,
+                                    "effectiveDate": datePicker.value,
+                                    "tariffs": tariffs
+                                })
+                    } else {
+                        this.fire('toast', {message: 'Either electricity or water tariffs must be defined', type: 'danger'})
+                    }
                 }
             }
 
